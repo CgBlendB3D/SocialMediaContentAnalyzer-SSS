@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Content Analyzer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Theme */
+        .theme-dark {
+            background-color: #1a1a1a;
+            color: #d1d5db; /* gray-300 */
+        }
+        .theme-dark .main-container {
+            background-color: #2a2a2a;
+            border-color: #34d399;
+        }
+        .theme-dark .container-bg {
+            background-color: #2a2a2a;
+            border: 1px solid #34d399;
+        }
+        .theme-dark .input-border {
+            border-color: #10b981;
+        }
+        .theme-dark .text-accent {
+            color: #34d399;
+        }
+        .theme-dark .text-secondary {
+            color: #9ca3af;
+        }
+        .theme-dark .border-accent {
+            border-color: #34d399;
+        }
+        .theme-dark .social-link-icon-bg-github {
+            background: linear-gradient(to bottom right, #4b5563, #1f2937);
+        }
+        .theme-dark .social-link-icon-bg-twitter {
+            background: linear-gradient(to bottom right, #3b82f6, #1d4ed8);
+        }
+        .theme-dark .bg-button-main {
+            background-color: #34d399;
+            color: #000;
+        }
+        .theme-dark .bg-button-hover:hover {
+            background-color: #10b981;
+        }
+
+        /* Light Theme */
+        .theme-light {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .theme-light .main-container {
+            background-color: #e5e7eb;
+            border-color: #60a5fa;
+        }
+        .theme-light .container-bg {
+            background-color: #e5e7eb;
+            border: 1px solid #60a5fa;
+        }
+        .theme-light .input-border {
+            border-color: #3b82f6;
+        }
+        .theme-light .text-accent {
+            color: #3b82f6;
+        }
+        .theme-light .text-secondary {
+            color: #6b7280;
+        }
+        .theme-light .border-accent {
+            border-color: #60a5fa;
+        }
+        .theme-light .social-link-icon-bg-github {
+            background: linear-gradient(to bottom right, #d1d5db, #3e3e3e);
+        }
+        .theme-light .social-link-icon-bg-twitter {
+            background: linear-gradient(to bottom right, #bfdbfe, #167ff8);
+        }
+        .theme-light .bg-button-main {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+        .theme-light .bg-button-hover:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="theme-dark flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Social Links Clip Path -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"></path>
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- Main Container -->
+    <div class="main-container w-full max-w-4xl rounded-2xl p-8 transition-colors duration-300">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+            <!-- Social Links -->
+            <div class="flex gap-x-2">
+                <div class="relative">
+                    <a href="https://github.com/CgBlendB3D" target="_blank" aria-label="GitHub">
+                        <div style="clip-path: url(#squircleClip)" class="social-link-icon-bg-github w-8 h-8 rounded-xl flex items-center justify-center shadow-lg border-white/10 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="relative">
+                    <a href="https://www.linkedin.com/in/shivam-singh-sengar-932a47266/" target="_blank" aria-label="LinkedIN">
+                        <div style="clip-path: url(#squircleClip)" class="social-link-icon-bg-twitter w-8 h-8 rounded-xl flex items-center justify-center shadow-lg border-white/10 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Theme Changer -->
+            <div class="flex items-center p-[3px] border border-solid border-gray-500 rounded-full w-max">
+                <code class="sr-only hidden tracking-wide select-none pointer-events-none">⌘+J</code>
+
+                <button id="theme-light-btn"
+                    class="inline-flex items-center justify-center ring-offset-zinc-400 transition-colors text-zinc-500 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:text-black w-[var(--sz)] h-[var(--sz)] min-w-[var(--sz)] min-h-[var(--sz)] max-w-[var(--sz)] max-h-[var(--sz)] [--sz:36px] p-0.5 rounded-full hover:bg-transparent data-[state=active]:bg-zinc-600/30 data-[state=active]:text-black"
+                    aria-label="light" data-state="" role="button" type="button">
+                    <svg data-initial="icon-theme-sync" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none">
+                        <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
+                        <g data-g="high">
+                            <path d="M4 12h-3"></path>
+                            <path d="M12 4v-3"></path>
+                            <path d="M20 12h3"></path>
+                            <path d="M12 20v3"></path>
+                        </g>
+                        <g data-g="low">
+                            <path d="M6.343 17.657l-1.414 1.414"></path>
+                            <path d="M6.343 6.343l-1.414 -1.414"></path>
+                            <path d="M17.657 6.343l1.414 -1.414"></path>
+                            <path d="M17.657 17.657l1.414 1.414"></path>
+                        </g>
+                    </svg>
+                </button>
+
+                <button id="theme-system-btn"
+                    class="inline-flex items-center justify-center ring-offset-zinc-400 transition-colors text-zinc-500 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:text-black w-[var(--sz)] h-[var(--sz)] min-w-[var(--sz)] min-h-[var(--sz)] max-w-[var(--sz)] max-h-[var(--sz)] [--sz:36px] p-0.5 rounded-full hover:bg-transparent data-[state=active]:bg-zinc-600/30 data-[state=active]:text-black"
+                    aria-label="system" data-state="active" role="button" type="button">
+                    <svg data-initial="icon-theme-sync" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none">
+                        <path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"></path>
+                        <path d="M10 19v-3.96 3.15"></path>
+                        <path d="M7 19h5"></path>
+                        <rect rx="2" y="12" x="16" height="10" width="6"></rect>
+                    </svg>
+                </button>
+
+                <button id="theme-dark-btn"
+                    class="inline-flex items-center justify-center ring-offset-zinc-400 transition-colors text-zinc-500 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:text-black w-[var(--sz)] h-[var(--sz)] min-w-[var(--sz)] min-h-[var(--sz)] max-w-[var(--sz)] max-h-[var(--sz)] [--sz:36px] p-0.5 rounded-full hover:bg-transparent data-[state=active]:bg-zinc-600/30 data-[state=active]:text-black"
+                    aria-label="dark" data-state="" role="button" type="button">
+                    <svg data-initial="icon-theme-sync" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="0" stroke="currentColor" fill="none">
+                        <path d="m4.8.69c0-.38-.31-.69-.69-.69s-.69.31-.69.69v1.03h-1.03c-.38,0-.69.31-.69.69s.31.69.69.69h1.03v1.03c0,.38.31.69.69.69s.69-.31.69-.69v-1.03h1.03c.38,0,.69-.31.69-.69s-.31-.69-.69-.69h-1.03V.69Zm5.14,5.14c0-.38-.31-.69-.69-.69s-.69.31-.69.69v1.03h-1.03c-.38,0-.69.31-.69.69s.31.69.69.69h1.03v1.03c0,.38.31.69.69.69s.69-.31.69-.69v-1.03h1.03c.38,0,.69-.31.69-.69s-.31-.69-.69-.69h-1.03v-1.03Zm-6.86,5.14c0-.38-.31-.69-.69-.69s-.69.31-.69.69v1.03H.69c-.38,0-.69.31-.69.69s.31.69.69.69h1.03v1.03c0,.38.31.69.69.69s.69-.31.69-.69v-1.03h1.03c.38,0,.69-.31.69-.69s-.31-.69-.69-.69h-1.03v-1.03ZM14.47,1.51l-.51-.07c-.37-.04-.58.38-.37.69.24.35.46.71.67,1.08.86,1.59,1.35,3.42,1.35,5.36,0,5.61-4.08,10.26-9.43,11.16-.41.07-.84.12-1.27.14-.37.02-.57.45-.31.71.12.12.24.24.36.35l.12.11.45.39.32.25.21.15.32.22.3.2c.21.13.42.25.64.37l.45.23.45.2.52.21.42.15c.23.08.46.14.7.21.18.05.36.09.54.13.22.04.43.08.65.12l.54.07.46.04c.22.01.44.02.66.02,6.25,0,11.31-5.07,11.31-11.31,0-.43-.02-.85-.07-1.27l-.06-.48c-.06-.38-.14-.76-.23-1.13-.12-.44-.26-.88-.43-1.3l-.19-.46-.13-.28-.13-.26c-.27-.53-.58-1.03-.93-1.51l-.26-.34-.34-.41-.28-.31-.2-.21-.28-.27-.38-.34-.55-.45-.42-.3-.5-.33-.55-.32-.56-.28-.19-.09-.41-.17-.47-.18-.43-.14-.56-.15-.45-.1-.5-.09Zm3.19,7.4c0-1.76-.35-3.43-.98-4.96,3.31,1.52,5.61,4.86,5.61,8.73,0,5.3-4.3,9.6-9.6,9.6-1.49,0-2.89-.34-4.15-.94,2.5-.79,4.67-2.3,6.27-4.3.23.32.61.53,1.04.53.71,0,1.29-.58,1.29-1.29,0-.61-.43-1.12-1-1.25.11-.2.21-.4.3-.61.33.2.71.32,1.13.32,1.18,0,2.14-.96,2.14-2.14s-.96-2.14-2.14-2.14c.06-.51.09-1.02.09-1.54Z" fill="currentColor" clip-rule="evenodd" fill-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <h1 class="text-4xl font-bold text-center text-accent mb-2">Social Media Content Analyzer</h1>
+        <p class="text-center text-secondary mb-2">Upload a document to get instant engagement improvement suggestions.</p>
+        <p class="text-center text-gray-500 text-sm mb-8">Made by: Shivam Singh Sengar, 2201640100354</p>
+
+        <!-- API Key Input Section -->
+        <div class="mb-6 container-bg p-6 rounded-lg transition-colors duration-300">
+            <label for="api-key-checkbox" class="flex items-center space-x-2 cursor-pointer mb-4">
+                <input type="checkbox" id="api-key-checkbox" class="form-checkbox h-4 w-4 text-green-600 rounded">
+                <span class="text-sm font-medium">Use a custom API key</span>
+            </label>
+
+            <!-- User-provided design for input text box -->
+            <div class="relative w-full mx-auto font-mono">
+                <div class="relative p-6 bg-black border-2 border-accent rounded-lg shadow-lg overflow-hidden transition-colors duration-300">
+                    <div class="absolute top-0 left-0 w-6 h-1 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute top-0 left-0 w-1 h-6 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute top-0 right-0 w-6 h-1 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute top-0 right-0 w-1 h-6 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-1 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-1 h-6 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-1 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 right-0 w-1 h-6 bg-accent transition-colors duration-300"></div>
+                    <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-transparent via-green-900/20 to-transparent theme-dark:via-green-900/20 theme-light:via-blue-900/20 transition-colors duration-300"></div>
+
+                    <label class="mb-3 text-accent text-sm tracking-wider flex items-center transition-colors duration-300" for="api-key-input">
+                        <span class="mr-2 text-green-600 theme-light:text-blue-600 transition-colors duration-300">➜</span>
+                        <span class="font-bold">Enter your Gemini API Key</span>
+                        <span class="ml-2 opacity-75 animate-pulse">▋</span>
+                    </label>
+
+                    <div class="relative">
+                        <input type="text" id="api-key-input" placeholder="Paste your Gemini API Key here" disabled
+                            class="w-full bg-transparent text-accent text-base border-2 border-accent rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent placeholder-gray-600/60 disabled:bg-gray-900 disabled:cursor-not-allowed transition-colors duration-300 theme-light:placeholder-blue-600/60">
+                        <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-accent transition-colors duration-300" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+
+                    <div class="mt-4 flex flex-col gap-2">
+                        <p class="text-xs text-green-500 opacity-80 flex items-center gap-2 theme-light:text-blue-500 transition-colors duration-300">
+                            <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                            <span><span class="text-red-400">WARNING:</span> The Suggestions Feature won't work without an API Key.</span>
+                        </p>
+                    </div>
+
+                    <div class="absolute top-0 right-12 w-px h-4 bg-accent/50 transition-colors duration-300"></div>
+                    <div class="absolute top-0 right-16 w-px h-6 bg-accent/30 transition-colors duration-300"></div>
+                    <div class="absolute top-0 right-20 w-px h-2 bg-accent/70 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-12 w-px h-4 bg-accent/50 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-16 w-px h-6 bg-accent/30 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-20 w-px h-2 bg-accent/70 transition-colors duration-300"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Document Upload Section -->
+        <div id="upload-area" class="border-2 border-dashed border-accent rounded-xl p-8 mb-6 text-center transition-colors duration-200 hover:border-green-600 hover:bg-beige-900 cursor-pointer theme-light:hover:border-blue-600 theme-light:hover:bg-blue-900">
+            <input type="file" id="file-input" class="hidden" accept=".pdf, image/*">
+            <svg class="mx-auto h-12 w-12 text-accent transition-colors duration-300" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M28 8H12a2 2 0 00-2 2v20m30-22h-16a2 2 0 00-2 2v12m-8 6l4 4 12-12m16 0L24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <p class="mt-2 text-sm font-medium">Drag and drop your file here, or <span class="text-accent font-semibold transition-colors duration-300">click to browse</span></p>
+            <p class="text-xs text-secondary mt-1">Supported formats: PDF, JPG, PNG</p>
+        </div>
+
+        <!-- Extracted Text Display -->
+        <div id="extracted-section" class="mb-6 hidden">
+            <h2 class="text-2xl font-bold text-accent mb-4 transition-colors duration-300">Extracted Text:</h2>
+            <div id="extracted-text-container" class="bg-zinc-900 rounded-lg p-6 border border-accent transition-colors duration-300">
+                <textarea id="extracted-text" class="w-full h-48 bg-transparent text-gray-300 font-mono resize-none outline-none theme-light:bg-transparent theme-light:text-gray-800 transition-colors duration-300" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Button to start analysis -->
+        <div class="flex justify-center mt-6">
+            <button id="analyze-button" disabled
+                class="bg-button-main bg-button-hover cursor-pointer group relative font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 ease-in-out shadow hover:shadow-lg w-40 h-12 disabled:opacity-50 disabled:cursor-not-allowed">
+                <div class="relative flex items-center justify-center gap-2">
+                    <span class="relative inline-block overflow-hidden">
+                        <span class="block transition-transform duration-300 group-hover:-translate-y-full">
+                            Analyze
+                        </span>
+                        <span class="absolute inset-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0">
+                            Now
+                        </span>
+                    </span>
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-45" viewBox="0 0 24 24">
+                        <circle fill="currentColor" r="11" cy="12" cx="12"></circle>
+                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="white" d="M7.5 16.5L16.5 7.5M16.5 7.5H10.5M16.5 7.5V13.5"></path>
+                    </svg>
+                </div>
+            </button>
+        </div>
+
+        <!-- Analysis Section -->
+        <div id="analysis-section" class="mt-6 hidden">
+            <h2 class="text-2xl font-bold text-accent mb-4 transition-colors duration-300">Analysis & Suggestions:</h2>
+            <div id="analysis-content" class="bg-zinc-900 rounded-lg p-6 border border-accent text-gray-300 theme-light:bg-gray-200 theme-light:text-gray-800 transition-colors duration-300">
+                <div id="loading-spinner" class="hidden flex justify-center items-center py-10">
+                    <div class="w-32 aspect-square rounded-full relative flex justify-center items-center animate-[spin_3s_linear_infinite] z-40 bg-[conic-gradient(white_0deg,white_300deg,transparent_270deg,transparent_360deg)] before:animate-[spin_2s_linear_linear_infinite] before:absolute before:w-[60%] before:aspect-square before:rounded-full before:z-[80] before:bg-[conic-gradient(white_0deg,white_270deg,transparent_180deg,transparent_360deg)] after:absolute after:w-3/4 after:aspect-square after:rounded-full after:z-[60] after:animate-[spin_3s_linear_infinite] after:bg-[conic-gradient(#065f46_0deg,#065f46_180deg,transparent_180deg,transparent_360deg)]">
+                        <span class="absolute w-[85%] aspect-square rounded-full z-[60] animate-[spin_5s_linear_infinite] bg-[conic-gradient(#34d399_0deg,#34d399_180deg,transparent_180deg,transparent_360deg)]"></span>
+                    </div>
+                </div>
+                <div id="analysis-text" class="whitespace-pre-wrap"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for messages -->
+    <div id="message-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center p-4 z-50">
+        <div class="bg-zinc-800 rounded-lg shadow-xl p-6 w-full max-w-sm text-center border border-green-400">
+            <p id="modal-message" class="text-gray-100 font-medium mb-4"></p>
+            <button id="close-modal" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200">OK</button>
+        </div>
+    </div>
+
+    <!-- Core Libraries from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.min.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.worker.min.mjs" type="module"></script>
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+
+    <script type="module">
+        import * as pdfjsLib from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.min.mjs';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.worker.min.mjs';
+
+        // Get DOM elements
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const extractedSection = document.getElementById('extracted-section');
+        const extractedTextarea = document.getElementById('extracted-text');
+        const analysisSection = document.getElementById('analysis-section');
+        const analysisText = document.getElementById('analysis-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const messageModal = document.getElementById('message-modal');
+        const modalMessage = document.getElementById('modal-message');
+        const closeModalButton = document.getElementById('close-modal');
+        const apiKeyInput = document.getElementById('api-key-input');
+        const apiKeyCheckbox = document.getElementById('api-key-checkbox');
+        const analyzeButton = document.getElementById('analyze-button');
+
+        // Theme changer elements
+        const themeLightBtn = document.getElementById('theme-light-btn');
+        const themeSystemBtn = document.getElementById('theme-system-btn');
+        const themeDarkBtn = document.getElementById('theme-dark-btn');
+        const body = document.body;
+
+        let extractedTextGlobal = '';
+
+        // Function to show a modal message
+        function showMessage(message) {
+            modalMessage.textContent = message;
+            messageModal.classList.remove('hidden');
+            messageModal.classList.add('flex');
+        }
+
+        // Close the modal
+        closeModalButton.addEventListener('click', () => {
+            messageModal.classList.add('hidden');
+            messageModal.classList.remove('flex');
+        });
+
+        // Toggle the API key input field
+        apiKeyCheckbox.addEventListener('change', () => {
+            apiKeyInput.disabled = !apiKeyCheckbox.checked;
+            if (!apiKeyCheckbox.checked) {
+                apiKeyInput.value = '';
+            }
+        });
+
+        // Handle file selection via file picker
+        uploadArea.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (event) => handleFile(event.target.files[0]));
+
+        // Handle drag-and-drop events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.add('border-green-600', 'bg-green-900', 'theme-light:border-blue-600', 'theme-light:bg-blue-900'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('border-green-600', 'bg-green-900', 'theme-light:border-blue-600', 'theme-light:bg-blue-900'), false);
+        });
+
+        uploadArea.addEventListener('drop', (event) => {
+            const file = event.dataTransfer.files[0];
+            handleFile(file);
+        }, false);
+
+        // Prevent default behavior for drag events
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Handle the file based on its type
+        async function handleFile(file) {
+            if (!file) {
+                return;
+            }
+
+            extractedSection.classList.remove('hidden');
+            analysisSection.classList.add('hidden'); // Hide analysis section on new file upload
+            extractedTextarea.value = "Extracting text... please wait.";
+            analyzeButton.disabled = true;
+
+            let extractedText = '';
+            const fileType = file.type;
+
+            try {
+                if (fileType === 'application/pdf') {
+                    extractedText = await extractTextFromPdf(file);
+                } else if (fileType.startsWith('image/')) {
+                    extractedText = await extractTextFromImage(file);
+                } else {
+                    showMessage('Unsupported file type. Please upload a PDF or an image.');
+                    extractedTextarea.value = '';
+                    return;
+                }
+            } catch (error) {
+                console.error("Extraction failed:", error);
+                showMessage('An error occurred during text extraction. Please try again.');
+                extractedTextarea.value = "Error extracting text.";
+                return;
+            }
+
+            extractedTextGlobal = extractedText.trim() || "No text could be extracted from this document.";
+            extractedTextarea.value = extractedTextGlobal;
+
+            if (extractedTextGlobal) {
+                analyzeButton.disabled = false;
+            }
+        }
+
+        // Function to extract text from a PDF file
+        async function extractTextFromPdf(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+            const pdf = await loadingTask.promise;
+            let fullText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                const pageText = textContent.items.map(item => item.str).join(' ');
+                fullText += pageText + '\n\n';
+            }
+            return fullText;
+        }
+
+        // Function to extract text from an image using Tesseract.js
+        async function extractTextFromImage(file) {
+            extractedTextarea.value = "Analyzing image with OCR. This may take a moment...";
+            const { data: { text } } = await Tesseract.recognize(
+                file,
+                'eng'
+            );
+            return text;
+        }
+
+        // Function to analyze the content using the Gemini API
+        analyzeButton.addEventListener('click', () => {
+            if (extractedTextGlobal) {
+                analyzeContent(extractedTextGlobal);
+            }
+        });
+
+        async function analyzeContent(content) {
+            // Check API key before processing
+            if (apiKeyCheckbox.checked && !apiKeyInput.value.trim()) {
+                showMessage('Please enter your custom API key.');
+                return;
+            }
+
+            analysisSection.classList.remove('hidden');
+            loadingSpinner.classList.remove('hidden');
+            analysisText.textContent = '';
+            analyzeButton.disabled = true;
+
+            const apiKey = apiKeyCheckbox.checked ? apiKeyInput.value.trim() : "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const systemPrompt = "You are a social media content expert. Analyze the provided text for its social media engagement potential and provide actionable, friendly, and concise suggestions for improvement. Focus on clarity, tone, call-to-action, and formatting. Do not use markdown headers or bullet points. Provide the analysis in a single, well-structured paragraph. Start the response with 'Analysis & Suggestions:'";
+
+            const userQuery = `Analyze the following social media post text: "${content}"`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            let retries = 0;
+            const maxRetries = 3;
+            const initialDelay = 1000;
+
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 && retries < maxRetries) {
+                            const delay = initialDelay * Math.pow(2, retries);
+                            retries++;
+                            await new Promise(res => setTimeout(res, delay));
+                            return fetchData();
+                        }
+                        throw new Error(`API request failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const analysis = result.candidates[0].content.parts[0].text;
+                    analysisText.textContent = analysis;
+                } catch (error) {
+                    console.error("API call error:", error);
+                    analysisText.textContent = "Sorry, an error occurred while analyzing the content. Please try again later.";
+                } finally {
+                    loadingSpinner.classList.add('hidden');
+                    analyzeButton.disabled = false;
+                }
+            };
+
+            fetchData();
+        }
+
+        // --- Theme Changer Logic ---
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            body.className = '';
+            body.classList.add(`theme-${themeName}`, 'flex', 'flex-col', 'items-center', 'justify-center', 'min-h-screen', 'p-4');
+
+            // Update button states
+            themeLightBtn.dataset.state = '';
+            themeSystemBtn.dataset.state = '';
+            themeDarkBtn.dataset.state = '';
+
+            const activeBtn = document.getElementById(`theme-${themeName}-btn`);
+            if (activeBtn) {
+                activeBtn.dataset.state = 'active';
+            }
+        }
+
+        function getInitialTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                return storedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Apply initial theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialTheme = getInitialTheme();
+            if (initialTheme === 'system') {
+                const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                setTheme(systemPref);
+            } else {
+                setTheme(initialTheme);
+            }
+        });
+
+        // Add event listeners for theme buttons
+        themeLightBtn.addEventListener('click', () => setTheme('light'));
+        themeDarkBtn.addEventListener('click', () => setTheme('dark'));
+        themeSystemBtn.addEventListener('click', () => {
+            const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            localStorage.setItem('theme', 'system');
+            setTheme(systemPref);
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (localStorage.getItem('theme') === 'system') {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+    </script>
+</body>
+</html>
